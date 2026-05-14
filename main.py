@@ -1,10 +1,15 @@
-
+import os
 from fastapi import FastAPI, HTTPException, status
 from models import IdeaSchema  # استيراد الهيكل
 from logic import execute_create_idea # استيراد المنطق
 
 # إنشاء كائن التطبيق (هذا هو السيرفر)
 app = FastAPI()
+
+#Environment Variables For port
+stage =os.getenv("STAGE","dev")
+
+
 
 # 1. تعريف مسار POST (لإرسال فكرة جديدة)
 @app.post("/ideas/", status_code=status.HTTP_201_CREATED)
